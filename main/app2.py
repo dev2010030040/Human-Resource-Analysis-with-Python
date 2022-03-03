@@ -3,23 +3,14 @@ import pandas as pd
 import json
 import plotly
 import plotly.express as px
-import numpy as np 
-import matplotlib.pyplot as plt
-import seaborn as sns
-import plotly.express as px
-#from plotly.offline import download_plotlyjs,init_notebook_modesv 
-
 
 app = Flask(__name__)
-
 
 test = pd.read_csv('aug_test.csv')
 train = pd.read_csv('aug_train.csv')
 missing_value = 100 * train.isnull().sum()/len(train)
 missing_value = missing_value.reset_index()
 missing_value.columns = ['variables','missing values in percentage']
-
-
 
 @app.route('/')
 def index():
@@ -28,7 +19,7 @@ def index():
 @app.route('/chart1')
 def chart1():
 
-    fig = px.imshow(train.isnull().T,template='ggplot2')
+    fig = px.imshow(train.isnull().T)
     fig.update_layout(title='Missing values in data set')
     #fig.show()
     
@@ -41,7 +32,7 @@ def chart1():
 def chart2():
     plot_city = train['city'].value_counts()[0:50].reset_index()
     plot_city.columns = ['City','Count']
-    px.bar(plot_city,x='City',y='Count',template='gridon',title='City',color='Count')
+    px.bar(plot_city,x='City',y='Count',title='City',color='Count')
     fig = px.bar(plot_city,x='City',y='Count',template='gridon',title='City',color='Count')
 
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
@@ -67,7 +58,7 @@ def chart3():
 def chart4():
     plot_gender = train['enrolled_university'].value_counts().reset_index()
     plot_gender.columns = ['enrolled_university','count']
-    fig = px.pie(plot_gender,values='count',names='enrolled_university',template='simple_white',title='enrolled_university')
+    fig = px.pie(plot_gender,values='count',names='enrolled_university',title='enrolled_university')
 
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     header="chart4"
@@ -78,7 +69,7 @@ def chart4():
 def chart5():
     plot_gender = train['education_level'].value_counts().reset_index()
     plot_gender.columns = ['education_level','count']
-    fig = px.pie(plot_gender,values='count',names='education_level',template='ggplot2',title='education_level')
+    fig = px.pie(plot_gender,values='count',names='education_level',title='education_level')
 
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     header="chart5"
@@ -90,7 +81,7 @@ def chart5():
 def chart6():
     plot_gender = train['major_discipline'].value_counts().reset_index()
     plot_gender.columns = ['major_discipline','count']
-    fig = px.pie(plot_gender,values='count',names='major_discipline',template='plotly',title='Major discipline')
+    fig = px.pie(plot_gender,values='count',names='major_discipline',title='Major discipline')
 
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     header="chart6"
@@ -101,7 +92,7 @@ def chart6():
 def chart7():
     plot_gender = train['company_size'].value_counts().reset_index()
     plot_gender.columns = ['company_size','count']
-    fig = px.pie(plot_gender,values='count',names='company_size',template='plotly_white',title='company_size is determined by no. of people employees')
+    fig = px.pie(plot_gender,values='count',names='company_size',title='company_size is determined by no. of people employees')
 
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     header="chart7"
