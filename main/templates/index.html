@@ -1,12 +1,83 @@
-<!doctype html>
-<html>
-<body style="font-family:arial, sans-serif">
-    <h1><a href="chart1">missing values</a></h1>
-    <h1><a href="chart2">city</a></h1>
-    <h1><a href="chart3">city development index</a></h1>
-    <h1><a href="chart4">enrolled_univertisty</a></h1>
-    <h1><a href="chart5">educational_level</a></h1>
-    <h1><a href="chart6">major descipline</a></h1>
-    <h1><a href="chart7">company_size</a></h1>
-</body>
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>HOME</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href = "{{ url_for('static',filename='css/style.css')}}" rel = "stylesheet">
+  <link href = "{{ url_for('static',filename='vendor/animate.css/animate.min.css')}}" rel = "stylesheet">
+  <link href = "{{ url_for('static',filename='vendor/aos/aos.css')}}" rel = "stylesheet">
+  <link href = "{{ url_for('static',filename='/vendor/bootstrap/css/bootstrap.min.css')}}" rel = "stylesheet">
+  <link href = "{{ url_for('static',filename='vendor/bootstrap-icons/bootstrap-icons.css')}}" rel = "stylesheet">
+  <link href = "{{ url_for('static',filename='vendor/boxicons/css/boxicons.min.css')}}" rel = "stylesheet">  
+  <link href = "{{ url_for('static',filename='vendor/glightbox/css/glightbox.min.css')}}" rel = "stylesheet">
+  <link href = "{{ url_for('static',filename='vendor/swiper/swiper-bundle.min.css')}}" rel = "stylesheet">
+  
+
+
+  <!-- =======================================================
+  * Template Name: Moderna - v4.8.0
+  * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex justify-content-between align-items-center">
+
+      <div class="logo">
+        <h1 class="text-light"><a href="index.html"><span>HUMAN RESOURCE MANAGEMENT</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="active " href="/">Home</a></li>
+          <li><a href="about">About</a></li>
+          <li class="dropdown"><a href="#"><span>Graphs</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <!--<li><a href="chart1">missing values</a></li>-->
+              <li><a href="chart2">City Distribution</a></li>
+              <li><a href="chart3">City Development Index</a></li>
+              <li><a href="chart4">Enrolled Univertisty Index</a></li>
+              <li><a href="chart5">Educational Level Index</a></li>
+              <li><a href="chart6">Major Descipline</a></li>
+              <li><a href="chart7">Company Size</a></li>
+              </ul>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex justify-cntent-center align-items-center">
+    <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown">WELCOME TO HUMAN-RESOUCE MANAGEMENT</h2>
+          <p class="animate__animated animate__fadeInUp">Use the drop down option to browse through the graphs</p>
+        </div>
+      </div>
+   </div>
+  </body>
 </html>

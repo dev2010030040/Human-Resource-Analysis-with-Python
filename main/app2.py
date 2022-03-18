@@ -1,10 +1,17 @@
 from flask import Flask, render_template
+from flask_assets import Bundle, Environment
 import pandas as pd
 import json
 import plotly
 import plotly.express as px
 
 app = Flask(__name__)
+
+js = Bundle('style.css')
+
+assets = Environment(app)
+
+assets.register('main_js',js)
 
 test = pd.read_csv('aug_test.csv')
 train = pd.read_csv('aug_train.csv')
@@ -15,6 +22,10 @@ missing_value.columns = ['variables','missing values in percentage']
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 @app.route('/chart1')
 def chart1():
@@ -34,6 +45,7 @@ def chart2():
     plot_city.columns = ['City','Count']
     px.bar(plot_city,x='City',y='Count',title='City',color='Count')
     fig = px.bar(plot_city,x='City',y='Count',template='gridon',title='City',color='Count')
+    fig.update_layout(title_text='plot_city',title_y=0.5)
 
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     header="chart2"
