@@ -4,7 +4,7 @@ import pandas as pd
 import json
 import plotly
 import plotly.express as px
-
+import csv
 app = Flask(__name__)
 
 js = Bundle('style.css')
@@ -12,12 +12,25 @@ js = Bundle('style.css')
 assets = Environment(app)
 
 assets.register('main_js',js)
-
-test = pd.read_csv('aug_test.csv')
 train = pd.read_csv('aug_train.csv')
 missing_value = 100 * train.isnull().sum()/len(train)
 missing_value = missing_value.reset_index()
 missing_value.columns = ['variables','missing values in percentage']
+
+def train_data():
+    df = pd.read_csv("aug_train.csv")
+    with open('aug_train.csv',newline='') as file:
+        data = csv.DictReader(file)
+        count = 0
+        for row in data:
+            if row['education_level'] == 'Graduate' or row['education_level'] == 'Phd':
+                if int(row['training_hours']) >= 10:
+                    df.loc[count, 'hit_counter'] = 'hit'
+            else:
+                df.loc[count, 'hit_counter'] = 'not_hit'
+            print(count)
+            count+=1
+        df.to_csv("aug_train.csv", index=True)
 
 @app.route('/')
 def index():
@@ -26,6 +39,12 @@ def index():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+    
+@app.route('/tra1n')
+def tra1n():
+    train_data()
+    return render_template('tra1n.html',description="Data is trained")
 
 @app.route('/chart1')
 def chart1():
@@ -109,6 +128,18 @@ def chart7():
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     header="chart7"
     description = "temp7"
+    return render_template('notdash2.html', graphJSON=graphJSON, header=header,description=description)
+
+@app.route('/chart8')
+def chart8():
+    train = pd.read_csv('aug_train.csv')
+    plot_gender = train['hit_counter'].value_counts().reset_index()
+    plot_gender.columns = ['hit_counter','count']
+    fig = px.pie(plot_gender,values='count',names='hit_counter',title='')
+
+    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    header="chart8"
+    description = "temp8"
     return render_template('notdash2.html', graphJSON=graphJSON, header=header,description=description)
 
 
