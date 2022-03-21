@@ -1990,3 +1990,7 @@ section {
 #footer .credits a {
   color: #a2cce3;
 }
+
+.graph {
+  align-items: center;
+}

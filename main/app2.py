@@ -113,7 +113,7 @@ def chart6():
     plot_gender = train['major_discipline'].value_counts().reset_index()
     plot_gender.columns = ['major_discipline','count']
     fig = px.pie(plot_gender,values='count',names='major_discipline',title='Major discipline')
-
+    fig.update_traces(textposition='inside', textinfo='percent+label')
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     header="chart6"
     description = "temp6"
@@ -135,7 +135,7 @@ def chart8():
     train = pd.read_csv('aug_train.csv')
     plot_gender = train['hit_counter'].value_counts().reset_index()
     plot_gender.columns = ['hit_counter','count']
-    fig = px.pie(plot_gender,values='count',names='hit_counter',title='')
+    fig = px.pie(plot_gender,values='count',names='hit_counter',title='desired employment graph')
 
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     header="chart8"
